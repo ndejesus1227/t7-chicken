@@ -17,30 +17,17 @@ const initialState = {
 function characterData(state = initialState, action) {
   console.log(action);
   switch (action.type) {
-
     case CHARDATA_FETCHING:
       console.log('payload', action.payload);
-      return Object.assign({}, state, {
-        loading: true
-      });
-
+      return { ...state, loading: true};
     case CHARDATA_FETCH_SUCCESS:
       console.log('payload', action.payload);
-      return Object.assign({}, state, {
-        frameData: action.payload.moves,
-        metaData: action.payload.metadata,
-        character: action.character,
-        loading: false
-      });
-
-    case CHARDATA_FETCH_SUCCESS:
-      return Object.assign({}, state, {
-        character: action.character,
-        error: actiona.error,
-        loading: false
-      });
-  }
+      return { ...state, frameData: action.payload.moves, metaData: action.payload.metadata, character: action.character, loading: false };   
+    case CHARDATA_FETCH_SUCCESS: 
+      return { ...state, character: action.character, error: actiona.error, loading: false};	  
+    default:
 	return state;
+  }
 }
 
 export default characterData;
